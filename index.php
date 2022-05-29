@@ -67,7 +67,7 @@
   // array.push("Host: ".$_SERVER["HTTP_HOST"]);
 
   foreach($headers as $part) {
-      if (strpos($part, "Transfer-Encoding:") == 0) {
+      if (strpos($part, "Transfer-Encoding:") == 0 || strpos($part, "Access-Control-Allow-Origin:") == 0) {
         continue;
       }
 
@@ -79,6 +79,8 @@
 
       header(trim($middle[0]).": ".trim($middle[1]));
   }
+  
+  header("Access-Control-Allow-Origin: *");
 
   echo $data;
 ?>
